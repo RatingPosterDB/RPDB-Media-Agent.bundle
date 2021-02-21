@@ -12,7 +12,7 @@
 - Press the Gear Icon to the Right of the Plug-in
 - Enter [RPDB API Key](https://ratingposterdb.com/api-key/) and Choose Settings
 - Click "Save"
-- Move the "Ratin Poster Database" Plug-in to the Top of ALL Agents (for "Shows", move it to the top of both "TheTVDB" and also "The Movie Database", for "Movies" move it to the top of both "The Movie Database" and "Plex Movie (Legacy)", it is very important that this plug-in is the first in all lists in order for it to function properly)
+- Move the "Rating Poster Database" Plug-in to the Top of ALL Agents (for "Shows", move it to the top of both "TheTVDB" and also "The Movie Database", for "Movies" move it to the top of both "The Movie Database" and "Plex Movie (Legacy)", it is very important that this plug-in is the first in all lists in order for it to function properly)
 
 ## Important Note
 

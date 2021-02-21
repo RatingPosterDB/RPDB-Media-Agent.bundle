@@ -1,0 +1,26 @@
+[
+  {
+    "id": "rpdb_key",
+    "label": "RPDB API Key (required)",
+    "type": "text",
+    "default": ""
+  },
+  {
+    "id": "poster_type",
+    "label": "Poster Type (Tier 1 supports only 'Ratings')",
+    "type": "enum",
+    "values": [
+      "Ratings",
+      "Ratings + Certification",
+      "IMDB + RT + RT Audience",
+      "IMDB + MC + MC Audience"
+    ],
+    "default": "Ratings"
+  },
+  {
+    "id": "backdrops",
+    "label": "Backdrops (Tier 3 needed)",
+    "type": "bool",
+    "default": "false"
+  }
+]

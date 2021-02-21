@@ -1,6 +1,6 @@
 # RPDB-Media-Agent.bundle
 
-[RPDB](https://ratingposterdb.com/) Plug-in for Plex; Adds Posters / Backgrounds with Ratings
+RPDB Plug-in for Plex; Adds Posters / Backgrounds with Ratings from [RPDB](https://ratingposterdb.com/)
 
 ## Install
 

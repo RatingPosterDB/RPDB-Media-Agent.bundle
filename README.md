@@ -4,7 +4,7 @@ RPDB Plug-in for Plex; Adds Posters / Backgrounds with Ratings from [RPDB](https
 
 ## Install
 
-- [Download Plug-in](https://github.com/jaruba/RPDB-Media-Agent.bundle/releases/download/v0.0.1/RPDB-Media-Agent.bundle.zip)
+- [Download Plug-in](https://github.com/jaruba/RPDB-Media-Agent.bundle/releases/download/v0.0.2/RPDB-Media-Agent.bundle.zip)
 - Copy Contents of Plug-in to Plex's "Plug-ins" Folder
 - Restart Plex
 - In Plex, go to Account > Agents (under "Settings")

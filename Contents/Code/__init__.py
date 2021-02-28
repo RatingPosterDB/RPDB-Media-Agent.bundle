@@ -120,15 +120,7 @@ class RpdbApiAgent(object):
 
 # REGISTER AGENTS
 class RpdbApiMovies(RpdbApiAgent, Agent.Movies):
-	contributes_to = [
-		'com.plexapp.agents.imdb',
-		'com.plexapp.agents.themoviedb'
-	]
 	agent_type_verbose = "Movies"
 
 class RpdbApiTvShows(RpdbApiAgent, Agent.TV_Shows):
-	contributes_to = [
-		'com.plexapp.agents.imdb',
-		'com.plexapp.agents.themoviedb'
-	]
 	agent_type_verbose = "TV"

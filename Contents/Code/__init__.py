@@ -60,10 +60,7 @@ class RpdbApiAgent(object):
 			))
 
 	def update(self, metadata, media, lang):
-		#processTitle(str(media.title))
-		Log.Debug('update 1111')
 		# PROCESS TITLE
-		Log.Debug(media.guid)
 
 		title = str(media.title)
 

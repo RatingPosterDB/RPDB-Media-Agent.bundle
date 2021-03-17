@@ -10,7 +10,7 @@ HTTP_HEADERS = {
 
 POSTER_TYPE_MAP = {
     "Ratings": "poster-default",
-    "Ratings + Certifications": "poster-certs",
+    "Ratings + Certification": "poster-certs",
     "IMDB + RT + RT Audience": "poster-rt",
     "IMDB + MC + MC Audience": "poster-mc"
 }

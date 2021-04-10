@@ -85,7 +85,16 @@ class RpdbApiAgent(object):
 
 		if poster_id is not None:
 
-			poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,POSTER_TYPE_MAP[Prefs['poster_type']],poster_id)
+			poster_type = POSTER_TYPE_MAP[Prefs['poster_type']]
+			low_rpdb_key = False
+
+			if txt.startswith("t1-") or txt.startswith("t2-"):
+				low_rpdb_key = True
+
+			if Prefs['textless'] and not low_rpdb_key:
+				poster_type = poster_type.replace('poster-', 'textless-')
+
+			poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
 
 			if poster_url not in metadata.posters:
 
@@ -98,7 +107,7 @@ class RpdbApiAgent(object):
 					metadata.posters[poster_url] = Proxy.Preview(r.content)
 					metadata.posters.validate_keys(valid_names)
 
-			if Prefs['backdrops']:
+			if Prefs['backdrops'] and not low_rpdb_key:
 				backdrop_url = 'https://api.ratingposterdb.com/{}/{}/backdrop-default/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_id)
 
 				if backdrop_url not in metadata.art:

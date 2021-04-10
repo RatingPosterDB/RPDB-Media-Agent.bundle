@@ -22,5 +22,11 @@
     "label": "Backdrops (Tier 3 needed)",
     "type": "bool",
     "default": "false"
+  },
+  {
+    "id": "textless",
+    "label": "Textless Posters (Tier 3 needed)",
+    "type": "bool",
+    "default": "false"
   }
 ]

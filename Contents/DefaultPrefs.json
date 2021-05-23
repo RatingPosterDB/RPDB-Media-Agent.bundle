@@ -25,7 +25,7 @@
   },
   {
     "id": "textless",
-    "label": "Textless Posters (Tier 3 needed)",
+    "label": "Textless Posters",
     "type": "bool",
     "default": "false"
   }

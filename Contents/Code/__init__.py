@@ -91,7 +91,7 @@ class RpdbApiAgent(object):
 			if txt.startswith("t1-") or txt.startswith("t2-"):
 				low_rpdb_key = True
 
-			if Prefs['textless'] and not low_rpdb_key:
+			if Prefs['textless']:
 				poster_type = poster_type.replace('poster-', 'textless-')
 
 			poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)

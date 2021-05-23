@@ -1,7 +1,7 @@
 import certifi
 import requests
 
-PLUGIN_VERSION = '0.96'
+PLUGIN_VERSION = '0.97'
 
 HTTP_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12.4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30",

@@ -88,7 +88,7 @@ class RpdbApiAgent(object):
 			poster_type = POSTER_TYPE_MAP[Prefs['poster_type']]
 			low_rpdb_key = False
 
-			if txt.startswith("t1-") or txt.startswith("t2-"):
+			if Prefs['rpdb_key'].startswith("t1-") or Prefs['rpdb_key'].startswith("t2-"):
 				low_rpdb_key = True
 
 			if Prefs['textless']:

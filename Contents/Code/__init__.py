@@ -1,5 +1,6 @@
 import certifi
 import requests
+import re
 
 PLUGIN_VERSION = '0.98'
 
@@ -94,7 +95,15 @@ class RpdbApiAgent(object):
 			if Prefs['textless']:
 				poster_type = poster_type.replace('poster-', 'textless-')
 
-			poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
+			if not Prefs['rpdb_key'].startswith("t1-"):
+				poster_lang = re.findall("\(([a-z]{2})\)$", Prefs['poster_lang'])
+
+				if poster_lang and poster_lang[0] and poster_lang[0] != "en":
+					poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg?lang={}'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id, poster_lang[0])
+				else:
+					poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
+			else:
+				poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
 
 			if poster_url not in metadata.posters:
 

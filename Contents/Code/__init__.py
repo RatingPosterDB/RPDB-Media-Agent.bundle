@@ -1,6 +1,8 @@
 import certifi
 import requests
 import re
+import os
+from plex_media import media_to_videos
 
 PLUGIN_VERSION = '0.98'
 
@@ -38,7 +40,7 @@ class RpdbApiAgent(object):
 
 	def __init__(self, *args, **kwargs):
 		super(RpdbApiAgent, self).__init__(*args, **kwargs)
-		self.agent_type = "MOVIES" if isinstance(self, Agent.Movies) else "SERIES"
+		self.agent_type = "movies" if isinstance(self, Agent.Movies) else "series"
 		if isinstance(self, Agent.Movies):
 			self.contributes_to = [
 				'com.plexapp.agents.imdb',
@@ -95,15 +97,77 @@ class RpdbApiAgent(object):
 			if Prefs['textless']:
 				poster_type = poster_type.replace('poster-', 'textless-')
 
+			poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
+
+			querystring = '?'
+
 			if not Prefs['rpdb_key'].startswith("t1-"):
 				poster_lang = re.findall("\(([a-z]{2})\)$", Prefs['poster_lang'])
 
 				if poster_lang and poster_lang[0] and poster_lang[0] != "en":
-					poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg?lang={}'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id, poster_lang[0])
-				else:
-					poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
-			else:
-				poster_url = 'https://api.ratingposterdb.com/{}/{}/{}/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_type,poster_id)
+					querystring += 'lang={}'.format(poster_lang[0])
+
+			if not low_rpdb_key:
+				if (Prefs['movie_resolution_badge'] and self.agent_type == 'movies') or (Prefs['series_resolution_badge'] and self.agent_type == 'series') or (self.agent_type == 'movies' and (Prefs['audio_channels_badge'] or Prefs['encoding_badge'] or Prefs['container_badge'])):
+					all_videos = media_to_videos(media, kind=self.agent_type)
+					if all_videos[0]:
+						badges = ''
+						Log.Debug(all_videos[0])
+						if all_videos[0]['stream']:
+							if (Prefs['movie_resolution_badge'] and self.agent_type == 'movies') or (Prefs['series_resolution_badge'] and self.agent_type == 'series'):
+								if all_videos[0]['stream']['resolution']:
+									if all_videos[0]['stream']['resolution'] in ['240p','360p','480p','720p','1080p']:
+										badges += all_videos[0]['stream']['resolution']
+									elif all_videos[0]['stream']['resolution'] in ['1440p', '2kp']:
+										badges += '2k'
+									elif all_videos[0]['stream']['resolution'] in ['2160p', '4kp']:
+										badges += '4k'
+									elif all_videos[0]['stream']['resolution'] in ['2880p', '5kp']:
+										badges += '5k'
+									elif all_videos[0]['stream']['resolution'] in ['4320p', '8kp']:
+										badges += '8k'
+									elif all_videos[0]['stream']['resolution'] in ['fullhdp', 'full hdp']:
+										badges += '1080p'
+									elif all_videos[0]['stream']['resolution'] in ['hdp']:
+										badges += '720p'
+									elif all_videos[0]['stream']['resolution'] in ['sdp']:
+										badges += 'sd'
+
+							if Prefs['audio_channels_badge'] and self.agent_type == 'movies':
+								if all_videos[0]['stream']['audio_channels'] in ['2.0','5.1','7.1']:
+									if len(badges) > 0:
+										badges += '%2C'
+									badges += 'audio{}'.format(all_videos[0]['stream']['audio_channels'].replace(".", ""))
+
+							if Prefs['encoding_badge'] and self.agent_type == 'movies':
+								if all_videos[0]['stream']['video_codec'].lower() in ['h264', 'x264', 'avc']:
+									if len(badges) > 0:
+										badges += '%2C'
+									badges += 'h264'
+								if all_videos[0]['stream']['video_codec'].lower() in ['h265', 'x265', 'hevc']:
+									if len(badges) > 0:
+										badges += '%2C'
+									badges += 'h265'
+
+						if Prefs['container_badge'] and self.agent_type == 'movies':
+							filename, file_extension = os.path.splitext(all_videos[0]['plex_part'].file)
+							if file_extension.lower() in ['.mkv', '.mp4', '.avi']:
+								if len(badges) > 0:
+									badges += '%2C'
+								badges += file_extension.replace(".", "").lower()
+
+						if len(badges) > 0:
+							if len(querystring) > 1:
+								querystring += '&'
+							if Prefs['badge_position'] != 'Left':
+								querystring += 'badgePos={}&badges={}'.format(Prefs['badge_position'].lower(), badges)
+							else:
+								querystring += 'badges={}'.format(badges)
+
+			if len(querystring) > 1:
+				poster_url += querystring
+
+			Log.Debug(':: POSTER URL :: %s' % poster_url)
 
 			if poster_url not in metadata.posters:
 
@@ -129,9 +193,6 @@ class RpdbApiAgent(object):
 						backdrop_valid_names.append(backdrop_url)
 						metadata.art[backdrop_url] = Proxy.Preview(rb.content)
 						metadata.art.validate_keys(backdrop_valid_names)
-
-# ^ alternatively, to not handle the request outserves:
-# metadata.posters[poster] = Proxy.Preview(HTTP.Request(poster), sort_order=i)
 
 
 ####################################################################################################

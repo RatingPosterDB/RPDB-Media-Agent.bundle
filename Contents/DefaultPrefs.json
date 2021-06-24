@@ -221,5 +221,46 @@
     "label": "Backdrops (Tier 3+ needed)",
     "type": "bool",
     "default": "false"
+  },
+  {
+    "id": "badge_position",
+    "label": "Badge Position",
+    "type": "enum",
+    "values": [
+      "Left",
+      "Center",
+      "Right"
+    ],
+    "default": "Left"
+  },
+  {
+    "id": "movie_resolution_badge",
+    "label": "Movie Video Resolution Badge (Tier 3+ needed: 4k, 1080p, etc.)",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "series_resolution_badge",
+    "label": "Series Video Resolution Badge (Tier 3+ needed: 4k, 1080p, etc.)",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "audio_channels_badge",
+    "label": "Movie Audio Channels Badge (Tier 3+ needed: 7.1, 5.1, 2.0)",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "encoding_badge",
+    "label": "Movie Video Encoding Badge (Tier 3+ needed: h264, h265, etc.)",
+    "type": "bool",
+    "default": "false"
+  },
+  {
+    "id": "container_badge",
+    "label": "Movie Video Container Badge (Tier 3+ needed: mkv, mp4, avi, etc.)",
+    "type": "bool",
+    "default": "false"
   }
 ]

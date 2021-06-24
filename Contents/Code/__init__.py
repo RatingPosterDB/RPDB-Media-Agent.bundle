@@ -81,7 +81,11 @@ class RpdbApiAgent(object):
 			poster_id = media.guid[len(imdb_guid_identifier):].split("?")[0]
 		if tmdb_guid_identifier in media.guid:
 			poster_source = 'tmdb'
-			poster_id = media.guid[len(tmdb_guid_identifier):].split("?")[0]
+			if self.agent_type == 'movies':
+				poster_media_type = 'movie'
+			else:
+				poster_media_type = 'series'
+			poster_id = '{}-{}'.format(poster_media_type,media.guid[len(tmdb_guid_identifier):].split("?")[0])
 		if tvdb_guid_identifier in media.guid:
 			poster_source = 'tvdb'
 			poster_id = media.guid[len(tvdb_guid_identifier):].split("?")[0]

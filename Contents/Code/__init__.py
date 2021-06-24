@@ -169,29 +169,35 @@ class RpdbApiAgent(object):
 
 			Log.Debug(':: POSTER URL :: %s' % poster_url)
 
-			if poster_url not in metadata.posters:
+			if poster_url not in metadata.posters.keys():
+
+				poster_sort = 1000 - len(metadata.posters.keys())
+
+				valid_names = metadata.posters.keys()
 
 				r = requests.get(poster_url, headers=HTTP_HEADERS, verify=certifi.where())
 
 				if r.status_code == 200:
 
-					valid_names = list()
-					valid_names.append(poster_url)
-					metadata.posters[poster_url] = Proxy.Preview(r.content)
+					valid_names.insert(0, poster_url)
+					metadata.posters[poster_url] = Proxy.Media(r.content, sort_order=poster_sort)
 					metadata.posters.validate_keys(valid_names)
 
 			if Prefs['backdrops'] and not low_rpdb_key:
 				backdrop_url = 'https://api.ratingposterdb.com/{}/{}/backdrop-default/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_id)
 
-				if backdrop_url not in metadata.art:
+				if backdrop_url not in metadata.art.keys():
+
+					backdrop_sort = 1000 - len(metadata.art.keys())
+
+					backdrop_valid_names = metadata.art.keys()
 
 					rb = requests.get(backdrop_url, headers=HTTP_HEADERS, verify=certifi.where())
 
 					if rb.status_code == 200:
 
-						backdrop_valid_names = list()
-						backdrop_valid_names.append(backdrop_url)
-						metadata.art[backdrop_url] = Proxy.Preview(rb.content)
+						backdrop_valid_names.insert(0, backdrop_url)
+						metadata.art[backdrop_url] = Proxy.Media(rb.content, sort_order=backdrop_sort)
 						metadata.art.validate_keys(backdrop_valid_names)
 
 

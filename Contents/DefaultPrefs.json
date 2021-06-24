@@ -24,6 +24,12 @@
     "default": "false"
   },
   {
+    "id": "overwrite_posters",
+    "label": "Update Ratings on Each Metadata Refresh",
+    "type": "bool",
+    "default": "false"
+  },
+  {
     "id": "poster_lang",
     "label": "Preferred Poster Language (Tier 2+ needed)",
     "type": "enum",

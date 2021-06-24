@@ -173,9 +173,28 @@ class RpdbApiAgent(object):
 
 			Log.Debug(':: POSTER URL :: %s' % poster_url)
 
-			if poster_url not in metadata.posters.keys():
+			backdrop_url = 'https://api.ratingposterdb.com/{}/{}/backdrop-default/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_id)
 
-				poster_sort = 1000 - len(metadata.posters.keys())
+			poster_key = poster_url
+			backdrop_key = backdrop_url
+
+			poster_sort = 1000 - len(metadata.posters.keys())
+			if poster_sort < 1:
+				poster_sort = 1
+
+			backdrop_sort = 1000 - len(metadata.art.keys())
+			if backdrop_sort < 1:
+				backdrop_sort = 1
+
+			if Prefs['overwrite_posters']:
+				if "?" in poster_url:
+					poster_key += '&'
+				else:
+					poster_key += '?'
+				poster_key += 'key={}'.format(poster_sort)
+				backdrop_key += '?key={}'.format(backdrop_sort)
+
+			if poster_key not in metadata.posters.keys():
 
 				valid_names = metadata.posters.keys()
 
@@ -183,16 +202,13 @@ class RpdbApiAgent(object):
 
 				if r.status_code == 200:
 
-					valid_names.insert(0, poster_url)
-					metadata.posters[poster_url] = Proxy.Media(r.content, sort_order=poster_sort)
+					valid_names.insert(0, poster_key)
+					metadata.posters[poster_key] = Proxy.Media(r.content, sort_order=poster_sort)
 					metadata.posters.validate_keys(valid_names)
 
 			if Prefs['backdrops'] and not low_rpdb_key:
-				backdrop_url = 'https://api.ratingposterdb.com/{}/{}/backdrop-default/{}.jpg'.format(Prefs['rpdb_key'],poster_source,poster_id)
 
-				if backdrop_url not in metadata.art.keys():
-
-					backdrop_sort = 1000 - len(metadata.art.keys())
+				if backdrop_key not in metadata.art.keys():
 
 					backdrop_valid_names = metadata.art.keys()
 
@@ -200,8 +216,8 @@ class RpdbApiAgent(object):
 
 					if rb.status_code == 200:
 
-						backdrop_valid_names.insert(0, backdrop_url)
-						metadata.art[backdrop_url] = Proxy.Media(rb.content, sort_order=backdrop_sort)
+						backdrop_valid_names.insert(0, backdrop_key)
+						metadata.art[backdrop_key] = Proxy.Media(rb.content, sort_order=backdrop_sort)
 						metadata.art.validate_keys(backdrop_valid_names)
 
 

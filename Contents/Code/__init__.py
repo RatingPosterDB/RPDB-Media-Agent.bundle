@@ -4,7 +4,7 @@ import re
 import os
 from plex_media import media_to_videos
 
-PLUGIN_VERSION = '0.98'
+PLUGIN_VERSION = '0.99'
 
 HTTP_HEADERS = {
   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12.4) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.1 Safari/603.1.30",

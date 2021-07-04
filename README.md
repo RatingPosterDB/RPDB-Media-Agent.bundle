@@ -25,3 +25,13 @@ You need to ensure that any other Media Agent is used for Movies instead of the 
 **The fact that it won't work with the default "Plex Movie" and "Plex TV Series" agents is a limitation in Plex's architecture and cannot be fixed within the plug-in.**
 
 If you wish to still use the "Plex Movie" and "Plex TV Series" default agents, then I suggest using the [RPDB Folders](https://github.com/RatingPosterDB/rpdb-folders/blob/main/README.md) application instead of this plug-in, which will work with any agent, including many other applications. (RPDB Folders was tested with: Plex, Emby, Jellyfin and Kodi)
+
+## Screenshots
+
+Settings:
+
+![Plex-Plugin-Settings](https://user-images.githubusercontent.com/1777923/124393871-4b219880-dd05-11eb-88f4-3328ccc36004.png)
+
+Result Example:
+
+![smart-tv-1](https://user-images.githubusercontent.com/1777923/124393891-6096c280-dd05-11eb-9258-95cdad33169c.jpg)

@@ -16,12 +16,12 @@ RPDB Plug-in for Plex; Adds Posters / Backgrounds with Ratings from [RPDB](https
 
 ## Important Note
 
-This plug-in will work as expected for absolutely all Media Agents EXCEPT the new default "Plex Movie" agent (that is used by default for movies only).
+This plug-in will work as expected for absolutely all Media Agents EXCEPT the default "Plex Movie" and "Plex TV Series" agents.
 
 You can change the default Media Agent for a library by going to Account > Libraries (under "Manage") > Edit (right side of a library line) > Advanced > Agent.
 
-It will work as expected by default with Series, but in order for it to also work with movies, you need to ensure that any other Media Agent is used for Movies instead of the "Plex Movie" entitled Agent.
+You need to ensure that any other Media Agent is used for Movies instead of the "Plex Movie" entitled Agent, and for Series any other Media Agent except "Plex TV Series".
 
-The fact that it won't work with the default "Plex Movie" agent is a limitation in Plex's architecture and cannot be fixed within the plug-in.
+**The fact that it won't work with the default "Plex Movie" and "Plex TV Series" agents is a limitation in Plex's architecture and cannot be fixed within the plug-in.**
 
-If you wish to still use the "Plex Movie" default agent, then I suggest using the [RPDB Folders](https://github.com/jaruba/rpdb-folders/blob/main/README.md) application instead of this plug-in, which will work with any agent, including many other applications. (RPDB Folders was tested with: Plex, Emby, Kodi)
+If you wish to still use the "Plex Movie" and "Plex TV Series" default agents, then I suggest using the [RPDB Folders](https://github.com/RatingPosterDB/rpdb-folders/blob/main/README.md) application instead of this plug-in, which will work with any agent, including many other applications. (RPDB Folders was tested with: Plex, Emby, Jellyfin and Kodi)

@@ -30,10 +30,11 @@ If you wish to still use the "Plex Movie" and "Plex TV Series" default agents, t
 
 ## Screenshots
 
-Settings:
+### Settings:
 
-![Plex-Plugin-Settings](https://github.com/user-attachments/assets/3e83fce9-2b76-4ff0-9ed1-6c32a0152595)
+![Plex-Plugin-Settings](https://github.com/user-attachments/assets/fbeb8ea7-c9a0-40e5-add1-f71988e48ba2)
 
-Result Example:
+
+### Result Example:
 
 ![smart-tv-1](https://user-images.githubusercontent.com/1777923/124393891-6096c280-dd05-11eb-9258-95cdad33169c.jpg)

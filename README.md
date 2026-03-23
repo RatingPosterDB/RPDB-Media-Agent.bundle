@@ -2,6 +2,10 @@
 
 RPDB Plug-in for Plex; Adds Posters / Backgrounds with Ratings from [RPDB](https://ratingposterdb.com/)
 
+While this Legacy Media Agent for Plex still works at the time of writing, it has limitations and could be deprecated by Plex in the future, we suggest switching to either:
+- the new [Plex Metadata Provider](https://ratingposterdb.com/plex-agent/)
+- the [RPDB Folders app](https://github.com/RatingPosterDB/rpdb-folders)
+
 ## Install
 
 - [Download Plug-in](https://github.com/RatingPosterDB/RPDB-Media-Agent.bundle/releases/latest)
